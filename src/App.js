@@ -17,7 +17,6 @@ function App() {
       <Route path="/user" element = {<UserPage/>} />
       <Route path="/inquiry" element = {<InquiryPage/>} />
       <Route path="/auth/success" element = {<AuthSuccess/>}/>
-      
     </Routes>
     
         
