@@ -46,7 +46,7 @@ function AuthPage(){
         <h2> Auth Page ...</h2>
 
         <button onClick={()=>{onSubmit()}}>인증하기123 (/authorize)</button>
-        <button onClick={()=>{getToken()}}>토큰발급123 (/token)</button>
+        {/* <button onClick={()=>{getToken()}}>토큰발급123 (/token)</button> */}
         </>
     )
 }
