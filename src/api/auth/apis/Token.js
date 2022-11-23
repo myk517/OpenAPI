@@ -5,7 +5,7 @@ function Token(props){
     const [access_token, setAccess_token] = useState('');
     const test = ()=>{
       console.log('test');
-      axios.get("http://localhost:8080/").then(()=>{console.log('su')}).catch(()=>{console.log('fial')});
+      axios.get("http://localhost:8080/").then(()=>{console.log('sucess')}).catch(()=>{console.log('fail')});
     }
     const getToken = () =>{
         let data = {
