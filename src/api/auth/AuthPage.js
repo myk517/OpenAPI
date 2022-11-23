@@ -23,6 +23,19 @@ function AuthPage(){
 
         }
 
+        const getOobToken = ()=>{
+          let datas =  {
+            params : 
+            {"client_id" : "9815d321-e0e1-462c-ad06-9cfa5d46c53c",
+              "client_secret":"39831a41-c3d7-47f2-b72f-bc82c4ca5e53",
+              "scope":"oob",
+              "grant_type":"client_credentials"}
+          }
+          axios.post("http://localhost:8080/api/v1/token/getToken", null,datas)
+          .then(()=>{console.log('getOobToken Success...')})
+          .catch(()=>{console.log('getOobToken fail...')});
+        }
+
         const getToken = () =>{
             console.log('asdg');
             let data = {
@@ -46,6 +59,7 @@ function AuthPage(){
         <h2> Auth Page ...</h2>
 
         <button onClick={()=>{onSubmit()}}>인증하기123 (/authorize)</button>
+        <button onClick={()=>{getOobToken()}}>oob 토큰 발급 받기 (/authorize)</button>
         {/* <button onClick={()=>{getToken()}}>토큰발급123 (/token)</button> */}
         </>
     )
