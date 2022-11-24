@@ -4,27 +4,50 @@ import axios from "axios";
 const Transfer = ()=>{
   //const [accessTokenOob, setAccessTokenOob] = useState();
   const accessTokenOob = localStorage.getItem("accessTokenOob");
+  const accessTokenTransfer = localStorage.getItem("accessTokenTransfer");
+  const currentDate = getCurrentDate();
+  
+  function getCurrentDate()
+    {
+        let date = new Date();
+        let year = date.getFullYear().toString();
+
+        let month = date.getMonth() + 1;
+        month = month < 10 ? '0' + month.toString() : month.toString();
+
+        let day = date.getDate();
+        day = day < 10 ? '0' + day.toString() : day.toString();
+
+        let hour = date.getHours();
+        hour = hour < 10 ? '0' + hour.toString() : hour.toString();
+
+        let minites = date.getMinutes();
+        minites = minites < 10 ? '0' + minites.toString() : minites.toString();
+
+        let seconds = date.getSeconds();
+        seconds = seconds < 10 ? '0' + seconds.toString() : seconds.toString();
+
+        return year + month + day + hour + minites + seconds;
+    }
+ 
 
   const withdrawApi = () => {
     console.log("Run withdraw Funcion ...");
-    console.log("oob token>> ", accessTokenOob);
+    let datas = {
+      access_token : accessTokenTransfer,
+      cntr_account_type : "N",
+      cntr_account_num: "100000000002",
+      dps_print_content: "쇼핑몰환불",
+      wd_print_content: "오픈뱅킹출금",
+      tran_amt: "1000",
+      tran_dtime: currentDate,
+      req_client_name: "김미영",
+      req_client_account_num: "004",
+      req_client_num: "61250201399911",
+      transfer_purpose : "RC"
+    };
     axios
-      .post("http://localhost:8080/api/v1/transfer/withdraw", null, {
-        params: {
-          bank_tran_id: "value",
-          cntr_account_type: "value",
-          cntr_account_num: "value",
-          dps_print_content: "value",
-          fintech_use_num: "value",
-          wd_print_content: "value",
-          tran_amt: "value",
-          tran_dtime: "value",
-          req_client_name: "value",
-          req_client_account_num: "value",
-          req_client_num: "value",
-          transfer_purpose: "value",
-        },
-      })
+      .post("http://localhost:8080/api/v1/transfer/withdraw", datas)
       .then((res) => {
         console.log("success...", res);
       })
@@ -36,6 +59,7 @@ const Transfer = ()=>{
   const depositApi = () => {
     console.log("depositApi Function...");
     console.log("oob token>> ", accessTokenOob);
+    console.log('crdate>> ', currentDate);
     let datas = {
       access_token: accessTokenOob,
       cntr_account_type: "N",
@@ -43,7 +67,7 @@ const Transfer = ()=>{
       wd_pass_phrase: "NONE",
       wd_print_content: "환불금액",
       name_check_option: "off",
-      tran_dtime: "20201001150133",
+      tran_dtime: currentDate,
       req_cnt: "1",
       tran_no: "1",
       bank_tran_id: "M202201963U16134605A",

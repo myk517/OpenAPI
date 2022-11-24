@@ -61,13 +61,6 @@ function AuthPage(){
         </button>
         <br />
         oob 토큰 :{accessTokenOob} <br />
-        <button
-          onClick={() => {
-            getSe();
-          }}
-        >
-          localStorage.getItme(""){" "}
-        </button>
         {/* <button onClick={()=>{getToken()}}>토큰발급123 (/token)</button> */}
       </>
     );

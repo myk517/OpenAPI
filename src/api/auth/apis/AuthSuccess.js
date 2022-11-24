@@ -34,7 +34,9 @@ const AuthSuccess = () => {
       })
       .then((res) => {
         console.log("token API success..", res);
-        setAccessTokenTransfer(res.data.accessToken);
+        console.log('res.data>> ' , res.data);
+        console.log('res.data.access_token >> ' , res.data.access_token);
+        setAccessTokenTransfer(res.data.access_token);
         localStorage.setItem("accessTokenTransfer", accessTokenTransfer);
       })
       .catch((res) => {
